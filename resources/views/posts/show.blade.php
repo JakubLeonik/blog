@@ -15,12 +15,16 @@
         <div class="text-end px-3">Author: {{ $post['author'] }}</div>
     </div>
     <div class="controls d-flex gap-3 justify-content-end">
-        <a class="btn btn-primary" href="{{ route('posts.edit', $post->id) }}">Edit</a>
-        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-danger" type="submit">Delete</button>
-        </form>
+        @can('update', $post)
+            <a class="btn btn-primary" href="{{ route('posts.edit', $post->id) }}">Edit</a>
+        @endcan
+        @can('delete', $post)
+            <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        @endcan
         <a class="btn btn-primary" href="{{ route('posts.index') }}">Come back</a> <br>
     </div>
 @endsection

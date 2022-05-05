@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title', 100);
             $table->string('content', 2500);
             $table->string('author', 25);
+            $table->integer('author_id');
             $table->timestamps();
         });
     }

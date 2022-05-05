@@ -24,6 +24,7 @@ class PostsController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Post::class);
         return view('posts.create');
     }
 
@@ -35,6 +36,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Post::class);
         $request->validate([
             "title" => "required",
             "content" => "required"
@@ -44,6 +46,7 @@ class PostsController extends Controller
         $post->title = strip_tags($request->input('title'));
         $post->content = $request->input('content');
         $post->author = auth()->user()->name;
+        $post->author_id = auth()->user()->id;
         $post->save();
 
         return redirect()->route('posts.index');
@@ -68,6 +71,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('update', $post);
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -80,6 +84,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize('create', $post);
         $request->validate([
             "title" => "required",
             "content" => "required"
@@ -100,6 +105,7 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
         $post->delete();
         return redirect()->route('posts.index');
     }

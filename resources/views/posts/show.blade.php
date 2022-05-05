@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Posts')
+@section('title', $post['title'])
 
 @section('content')
     <div class="post p-3 my-3">

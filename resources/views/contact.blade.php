@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Blog')
+@section('title', 'Contact')
 
 @section('content')
     <div class="text-center">

@@ -3,8 +3,8 @@
 @section('title', 'Posts')
 
 @section('content')
-    <h1> Create Post </h1>
-    <form action="{{ route('posts.store') }}" method="post">
+    <div class="text-center"><h1> Create Post </h1></div>
+    <form action="{{ route('posts.store') }}" method="post" class="text-center p-3">
         @csrf
         Title: <input type="text" name="title" id="title" value="{{ old('title') }}"> <br>
         Content: <input type="text" name="content" id="content" value="{{ old('content') }}"> <br>

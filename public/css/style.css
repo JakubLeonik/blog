@@ -2,10 +2,27 @@ body{
     background-color: #202020;
     color: azure;
     font-family: Verdana;
-    font-size: 2em;
-    text-align: center;
-    padding: 5% 10%;
+    font-size: 1em;
+}
+nav, .navbar-brand{
+    font-size: 1.5em;
+}
+nav, footer{
+    background-color: #404040;
+}
+.nav-item{
+    border-left: #ccc dashed 1px;
+}
+.content{
+    background-color: #ccc;
+    color: #101010;
+}
+form{
+    line-height: 200%;
+}
+form input{
+    line-height: 100%;
 }
 a{
-    color: azure;
+    color: #101010;
 }

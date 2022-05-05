@@ -15,8 +15,8 @@
                 {{ substr($post['content'], 0, 700) }}...
             </pre>
             <hr>
-            <a class="text-decoration-none" href="{{ route('posts.show', ['post' => $post['id']]) }}">
-                <div class="text-end px-3">Read more =></div>
+            <a class="text-decoration-none d-flex justify-content-end" href="{{ route('posts.show', ['post' => $post['id']]) }}">
+                <div class="px-3 btn btn-link">Read more =></div>
             </a>
         </div>
     @endforeach

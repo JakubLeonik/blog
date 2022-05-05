@@ -37,14 +37,13 @@ class PostsController extends Controller
     {
         $request->validate([
             "title" => "required",
-            "content" => "required",
-            "author" => "required"
+            "content" => "required"
         ]);
 
         $post = new Post();
         $post->title = strip_tags($request->input('title'));
-        $post->content = strip_tags($request->input('content'));
-        $post->author = strip_tags($request->input('author'));
+        $post->content = $request->input('content');
+        $post->author = auth()->user()->name;
         $post->save();
 
         return redirect()->route('posts.index');
@@ -83,13 +82,11 @@ class PostsController extends Controller
     {
         $request->validate([
             "title" => "required",
-            "content" => "required",
-            "author" => "required"
+            "content" => "required"
         ]);
 
         $post->title = strip_tags($request->input('title'));
-        $post->content = strip_tags($request->input('content'));
-        $post->author = strip_tags($request->input('author'));
+        $post->content = $request->input('content');
         $post->save();
 
         return redirect()->route('posts.show', ['post' => $post->id]);

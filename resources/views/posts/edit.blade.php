@@ -3,13 +3,14 @@
 @section('title', 'Posts')
 
 @section('content')
-    <h1> Edit Post </h1>
-    <form action="{{ route('posts.update', $post->id) }}" method="post">
-        @csrf
-        @method('PUT')
-        Title: <input type="text" name="title" id="title" value="{{ $post->title }}"> <br>
-        Content: <input type="text" name="content" id="content" value="{{ $post->content }}"> <br>
-        Author: <input type="text" name="author" id="author" value="{{ $post->author }}"> <br>
-        <input type="submit" value="Update">
-    </form>
+    <div class="text-center">
+        <h1> Edit Post </h1> <br>
+        <form action="{{ route('posts.update', $post->id) }}" method="post">
+            @csrf
+            @method('PUT')
+            <input placeholder="Title" class="form-control" type="text" name="title" id="title" value="{{ $post->title }}"> <br>
+            <textarea placeholder="Content" class="form-control" type="text" name="content" rows="6" id="content">{{ $post->content }}</textarea> <br>
+            <input class="btn btn-primary" type="submit" value="Edit post">
+        </form>
+    </div>
 @endsection

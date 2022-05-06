@@ -49,7 +49,6 @@ class PostsController extends Controller
         $post = new Post();
         $post->title = strip_tags($request->input('title'));
         $post->content = $request->input('content');
-        $post->author = auth()->user()->name;
         $post->author_id = auth()->user()->id;
         $post->save();
 

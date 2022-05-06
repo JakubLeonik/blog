@@ -1,18 +1,18 @@
 @extends('layouts.layout')
 
-@section('title', $post['title'])
+@section('title', $post->title)
 
 @section('content')
     <div class="post p-3 my-3">
         <h2 class="text-center">
-            {{ $post['title'] }}
+            {{ $post->title }}
         </h2>
         <hr>
         <pre style="white-space: pre-wrap;">
-            {{ $post['content'] }}
+            {{ $post->content }}
         </pre>
         <hr>
-        <div class="text-end px-3">Author: {{ $post['author'] }}</div>
+        <div class="text-end px-3">Author: {{ $post->user->name }}</div>
     </div>
     <div class="controls d-flex gap-3 justify-content-end">
         @can('update', $post)

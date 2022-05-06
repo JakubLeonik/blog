@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', $post['title']." - edit")
+@section('title', $post->title." - edit")
 
 @section('content')
     <div class="text-center">

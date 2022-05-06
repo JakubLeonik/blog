@@ -8,7 +8,7 @@ use App\Models\Post;
 class PostsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display all posts.
      *
      * @return \Illuminate\Http\Response
      */
@@ -24,7 +24,9 @@ class PostsController extends Controller
      */
     public function create()
     {
+        //authorization - every logged user
         $this->authorize('create', Post::class);
+        //return create view
         return view('posts.create');
     }
 
@@ -36,12 +38,14 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        //authorization - every logged user - and validation
         $this->authorize('create', Post::class);
         $request->validate([
-            "title" => "required",
+            "title" => ["required", "unique:posts"],
             "content" => "required"
         ]);
 
+        //create new post
         $post = new Post();
         $post->title = strip_tags($request->input('title'));
         $post->content = $request->input('content');
@@ -49,6 +53,7 @@ class PostsController extends Controller
         $post->author_id = auth()->user()->id;
         $post->save();
 
+        //redirect to all posts
         return redirect()->route('posts.index');
     }
 
@@ -71,7 +76,9 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
+        //authorization - only owner
         $this->authorize('update', $post);
+        //return edit view
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -84,16 +91,19 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        //authorization - only owner - and validation
         $this->authorize('create', $post);
         $request->validate([
-            "title" => "required",
+            "title" => ["required", "unique:posts"],
             "content" => "required"
         ]);
 
+        //update post
         $post->title = strip_tags($request->input('title'));
         $post->content = $request->input('content');
         $post->save();
 
+        //redirect to view of updated post
         return redirect()->route('posts.show', ['post' => $post->id]);
     }
 
@@ -105,8 +115,11 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
+        //authorization - only owner
         $this->authorize('delete', $post);
+        //delete post
         $post->delete();
+        //redirect to all posts
         return redirect()->route('posts.index');
     }
 }

@@ -41,7 +41,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return true; // only logged user
     }
 
     /**
@@ -53,7 +53,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        return $user->id === $post->author_id;
+        return $user->id === $post->author_id; // only owner
     }
 
     /**
@@ -65,7 +65,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        return $user->id === $post->author_id;
+        return $user->id === $post->author_id; // only owner
     }
 
     /**

@@ -14,10 +14,13 @@ use App\Http\Controllers\PostsController;
 |
 */
 
+//main views
 Route::view('/', 'index')->name('index');
 Route::view('/contact', 'contact')->name('contact');
+
+//post views
 Route::resource('posts', PostsController::class);
 
+//auth views
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

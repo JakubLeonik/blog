@@ -1,5 +1,5 @@
 Simple Blog made for internship.
-Live demo: <a href="https://zaphyrus.tk" targer="_blank">link</a>
+Live demo: <a href="https://blog.zaphyrus.tk/" targer="_blank">link</a>
 
 The Blog is on MIT license: <br> <br>
 
